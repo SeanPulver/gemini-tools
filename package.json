@@ -18,6 +18,7 @@
   },
   "scripts": {
     "dump-ether": "cross-env node bin/gemini-tools dump-ether",
+    "dump-btc": "cross-env node bin/gemini-tools dump-btc",
     "get-balance": "cross-env node bin/gemini-tools get-balance",
     "test": "mocha --timeout 0"
   },

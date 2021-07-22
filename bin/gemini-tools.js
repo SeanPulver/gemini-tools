@@ -16,6 +16,16 @@ const logger = {
     return v;
   }
 };
+const _dumpBTC = require('../lib/dump-btc');
+
+const dumpBTC = async (gemini) => {
+  const results = await _dumpBTC(gemini, (trades) => {
+    logger.info('got trades!');
+    console.log(util.inspect(trades, { colors: true, depth: 15 }));
+  });
+  logger.info('done');
+  return results;
+};
 
 (async () => {
   const { help, h } = yargs.argv;
@@ -28,6 +38,8 @@ const logger = {
       });
       logger.info('done');
       break;
+    case 'dump-btc':
+      await dumpBTC(gemini);
     case 'get-balance':
       const record = await gemini.getMyAvailableBalances();
       record.forEach((v) => {
